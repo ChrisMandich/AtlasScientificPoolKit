@@ -165,9 +165,10 @@ void loop() {
             client.publish(topic_temp, String((RTD.get_last_received_reading()*1.8) + 32, 2).c_str(), true);
             ThingSpeak.setField(3, String((RTD.get_last_received_reading()*1.8) + 32, 2));                 //assign temperature readings to the third column of thingspeak channel, convert to F
           } else {                                                                                      //if the temperature reading is invalid
-            PH.send_cmd_with_num("T,", 25.0);
-            client.publish(topic_temp, String((25.0 * 1.8) + 32, 2).c_str(), true);
-            ThingSpeak.setField(3, String(25.0, 2));                 //assign temperature readings to the third column of thingspeak channel
+            Serial.println("Temperature reading is invalid.");
+            //PH.send_cmd_with_num("T,", 25.0);
+            //client.publish(topic_temp, String((25.0 * 1.8) + 32, 2).c_str(), true);
+            //ThingSpeak.setField(3, String(25.0, 2));                 //assign temperature readings to the third column of thingspeak channel
           }
 
           Serial.print(" ");
